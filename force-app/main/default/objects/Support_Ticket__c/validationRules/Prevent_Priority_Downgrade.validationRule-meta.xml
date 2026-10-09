@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Priority_Downgrade</fullName>
+    <active>true</active>
+    <description>Prevents lowering a ticket&apos;s priority once assigned. Escalating to a higher priority (e.g., Medium to High) remains allowed; downgrading (e.g., High to Medium or Low) is blocked to preserve the integrity of the urgency classification.</description>
+    <errorConditionFormula>AND(
+ISCHANGED(Priority__c),
+OR(
+AND(ISPICKVAL(PRIORVALUE(Priority__c), &quot;High&quot;), NOT(ISPICKVAL(Priority__c, &quot;High&quot;))),
+AND(ISPICKVAL(PRIORVALUE(Priority__c), &quot;Medium&quot;), ISPICKVAL(Priority__c, &quot;Low&quot;))
+)
+)</errorConditionFormula>
+    <errorDisplayField>Priority__c</errorDisplayField>
+    <errorMessage>Priority cannot be downgraded once assigned. If this needs to change, contact your supervisor.</errorMessage>
+</ValidationRule>

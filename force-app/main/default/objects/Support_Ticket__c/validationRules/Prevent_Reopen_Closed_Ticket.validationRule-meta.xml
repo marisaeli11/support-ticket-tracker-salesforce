@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Reopen_Closed_Ticket</fullName>
+    <active>true</active>
+    <description>Blocks any change to the Status of a ticket that is already Closed, including tickets that were loaded as Closed. Closed tickets cannot be reopened; a new ticket must be created instead.</description>
+    <errorConditionFormula>AND(
+  ISCHANGED(Status__c),
+  ISPICKVAL(PRIORVALUE(Status__c), &quot;Closed&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>A closed ticket cannot be reopened. Please create a new ticket instead.</errorMessage>
+</ValidationRule>
