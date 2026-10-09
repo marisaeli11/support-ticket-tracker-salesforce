@@ -70,9 +70,17 @@ The lines not covered in the Controller are safety nets: an error handler for th
 
 ## What is in this repository
 
-This repository contains the **code**: Apex classes, the Trigger and the LWC (`force-app/main/default`).
+This repository contains the project in Salesforce DX format (`force-app/main/default`):
 
-The data model and configuration were created in the Salesforce Org and are not included here: the `Support_Ticket__c` object and its fields, the two Validation Rules, the Permission Sets, the page layout and Field History Tracking. They are described in the technical report.
+| Folder | Content |
+|---|---|
+| `classes` | Handler, Controller and the two test classes |
+| `triggers` | `SupportTicketTrigger` |
+| `lwc` | `ticketDashboard` component |
+| `objects/Support_Ticket__c` | The custom object, its fields and the two Validation Rules |
+| `permissionsets` | `Support_Ticket_Creator` and `Support_Ticket_Manager` |
+
+Some configuration was done directly in the Salesforce Org and is not included here: the page layout, Field History Tracking and the user setup. It is described in the technical report.
 
 ## Future improvements
 
