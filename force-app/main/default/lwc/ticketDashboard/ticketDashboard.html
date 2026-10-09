@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Support Ticket Tracker" icon-name="standard:case">
+        <div class="slds-m-around_medium">
+            <template if:true={tickets}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={tickets}
+                    columns={columns}
+                    hide-checkbox-column
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_error">Error loading tickets.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
